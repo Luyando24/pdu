@@ -1,0 +1,209 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 24px;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0 16px;
+    width: 320px;
+    transition: var(--transition);
+}
+
+.searchBox:focus-within {
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px var(--green-glow);
+}
+
+.searchIcon {
+    color: var(--text-muted);
+}
+
+.searchInput {
+    border: none;
+    background: transparent;
+    padding: 12px;
+    width: 100%;
+    color: var(--text-primary);
+    outline: none;
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+}
+
+.filterBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filterBtn:hover {
+    background: var(--bg-hover);
+}
+
+.tableContainer {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+}
+
+.projectTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.projectTable th {
+    background: var(--bg-secondary);
+    padding: 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+}
+
+.projectTable td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.projectTable tbody tr {
+    transition: var(--transition);
+}
+
+.projectTable tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+.projectTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cellId {
+    font-variant-numeric: tabular-nums;
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.cellName {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.cellBudget {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.cellTime {
+    font-size: 0.85rem;
+}
+
+.statusBadge {
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.OnTrack {
+    background: var(--green-glow);
+    color: var(--green);
+}
+
+.PendingFunds {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.Blocked {
+    background: #fee2e2;
+    color: var(--red);
+}
+
+.AtRisk {
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.cellActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.actionLink {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.actionLink:hover {
+    color: #199e46;
+}
+
+.iconBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.iconBtn:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}

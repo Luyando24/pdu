@@ -1,0 +1,141 @@
+.section {
+    padding: 100px 0;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 72px;
+    align-items: start;
+}
+
+.dataFlow {
+    margin-top: 32px;
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.flowLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.flowPath {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.flowNode {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Pyramid tiers */
+.pyramid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tier {
+    width: var(--w, 100%);
+    margin: 0 auto;
+    transition: var(--transition);
+}
+
+.tier:hover .tierBar {
+    border-color: color-mix(in srgb, var(--c) 40%, transparent);
+    background: color-mix(in srgb, var(--c) 6%, var(--bg-card));
+}
+
+.critical .tierBar {
+    border-color: rgba(236, 72, 153, 0.25);
+    background: rgba(236, 72, 153, 0.05);
+}
+
+.tierBar {
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--c);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    transition: var(--transition);
+}
+
+.tierLeft {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.tierIcon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.tierLevel {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.critBadge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(236, 72, 153, 0.2);
+    color: #EC4899;
+    padding: 2px 8px;
+    border-radius: 100px;
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.tierRoles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-end;
+}
+
+.roleTag {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 100px;
+}
+
+@media (max-width: 1024px) {
+    .inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .tier {
+        width: 100% !important;
+    }
+}

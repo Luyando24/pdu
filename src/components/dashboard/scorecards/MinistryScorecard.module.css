@@ -1,0 +1,188 @@
+.container {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    padding: 16px 24px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+}
+
+.table td {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.centerAlign {
+    text-align: center;
+}
+
+.row {
+    transition: var(--transition);
+}
+
+.row:hover {
+    background: var(--bg-card-hover);
+}
+
+.nameWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.budget {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.projectsNum {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.subText {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.barCell {
+    min-width: 300px;
+}
+
+.barWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.barLabels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.targetLabel {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Bullet Chart Styles */
+.bulletChart {
+    position: relative;
+    height: 12px;
+    width: 100%;
+}
+
+.track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+[data-theme="light"] .track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 6px;
+    transition: width 1s ease-out;
+}
+
+.good {
+    background: var(--green);
+}
+
+.warning {
+    background: #F5A623;
+}
+
+.critical {
+    background: var(--red);
+}
+
+.targetMarker {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    width: 2px;
+    background: var(--text-primary);
+    z-index: 2;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.statusBadge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+}
+
+.bgGreen {
+    background: var(--green-glow);
+    color: var(--green);
+    border: 1px solid rgba(29, 185, 84, 0.3);
+}
+
+.bgYellow {
+    background: rgba(245, 166, 35, 0.15);
+    color: #F5A623;
+    border: 1px solid rgba(245, 166, 35, 0.3);
+}
+
+.bgRed {
+    background: var(--red-glow);
+    color: var(--red);
+    border: 1px solid rgba(229, 72, 77, 0.3);
+}
+
+.trendUp {
+    color: var(--green);
+}
+
+.trendDown {
+    color: var(--red);
+}
+
+.trendFlat {
+    color: var(--text-muted);
+}

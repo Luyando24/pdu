@@ -1,0 +1,47 @@
+.header {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.container {
+    display: flex;
+    position: relative;
+    height: calc(100vh - 180px);
+    /* Fill remaining height */
+    overflow: hidden;
+}
+
+.tableWrap {
+    flex: 1;
+    transition: all 0.3s ease;
+    min-width: 0;
+    /* Prevent flex overflow */
+}
+
+/* When the details panel is open, shrink the table area */
+.panelOpen {
+    flex: 0 0 calc(100% - 400px);
+}
+
+@media (max-width: 1024px) {
+    .panelOpen {
+        flex: 1;
+        /* On smaller screens, drawer overlaps, so don't shrink table */
+    }
+}

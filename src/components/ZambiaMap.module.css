@@ -1,0 +1,81 @@
+.wrap {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.outerRing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    border: 1px solid rgba(29, 185, 84, 0.12);
+    animation: rotate-slow 20s linear infinite;
+    pointer-events: none;
+}
+
+.svg {
+    width: 100%;
+    height: auto;
+    drop-shadow: 0 0 40px rgba(29, 185, 84, 0.3);
+}
+
+.zambiaShape {
+    transition: var(--transition);
+}
+
+/* Pulsing dots */
+.pulse {
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.dotGroup:nth-child(odd) .pulse {
+    animation-delay: 0.5s;
+}
+
+.dotGroup:nth-child(3n) .pulse {
+    animation-delay: 1s;
+}
+
+.dot {
+    transition: r 0.3s ease;
+}
+
+.dotGroup:hover .dot {
+    r: 7;
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.legendDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}

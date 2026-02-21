@@ -1,0 +1,96 @@
+.container {
+    display: flex;
+    height: calc(100vh - 84px);
+    /* Full height minus header */
+    background: var(--bg-primary);
+    margin-left: -24px;
+    margin-top: -24px;
+    margin-bottom: -24px;
+    margin-right: -24px;
+    overflow: hidden;
+}
+
+.sidebarWrapper {
+    width: 360px;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.05);
+}
+
+.mapWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: var(--bg-primary);
+    /* Add subtle grid background for the map area */
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+[data-theme="light"] .mapWrapper {
+    background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+.mapHeader {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 5;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 16px 24px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(12px);
+}
+
+.title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.mapContent {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    padding-top: 100px;
+    /* Space for the header */
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .sidebarWrapper {
+        width: 100%;
+        height: 400px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .mapWrapper {
+        min-height: 500px;
+    }
+}
