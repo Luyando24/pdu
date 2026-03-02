@@ -67,7 +67,12 @@ export default function Sidebar({
 
                 <nav className={styles.nav}>
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
+                        // For dashboard root paths (/dashboard, /constituency), only use exact match
+                        // For sub-paths, use startsWith to keep parent highlighted
+                        const isActive = 
+                            (item.href === '/dashboard' || item.href === '/constituency')
+                                ? pathname === item.href
+                                : pathname.startsWith(item.href);
                         const Icon = item.icon;
 
                         return (

@@ -1,231 +1,134 @@
 .mapContainer {
-    width: 100%;
-    height: 100%;
     position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .svgMap {
     width: 100%;
-    max-width: 800px;
-    height: 100%;
-    max-height: 80vh;
-    transform-origin: center;
-    /* Add subtle float animation */
-    animation: float 6s ease-in-out infinite;
+    height: auto;
+    /* Removed fixed max-height/width to allow responsiveness */
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.countryOutline {
-    transition: all 0.5s ease;
-}
-
-.nodeGroup {
+.provinceGroup {
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
-.nodeGroup:hover .nodeCore {
-    r: 4;
+.provincePath {
+    transition: all 0.3s ease;
+    fill: rgba(255, 255, 255, 0.03);
+    stroke: rgba(255, 255, 255, 0.1);
 }
 
-.nodeCore {
-    fill: var(--text-secondary);
-    stroke: var(--bg-primary);
-    stroke-width: 0.5;
-    transition: all 0.2s ease;
+/* Status Colors - Default State (Subtle) */
+.provinceGroup.on-track .provincePath {
+    fill: rgba(29, 185, 84, 0.05);
+    stroke: rgba(29, 185, 84, 0.3);
 }
 
-/* Status Colors */
-.on-track .nodeCore {
-    fill: var(--green);
+.provinceGroup.at-risk .provincePath {
+    fill: rgba(245, 166, 35, 0.05);
+    stroke: rgba(245, 166, 35, 0.3);
 }
 
-.delayed .nodeCore {
-    fill: #F5A623;
+.provinceGroup.delayed .provincePath {
+    fill: rgba(229, 72, 77, 0.05);
+    stroke: rgba(229, 72, 77, 0.3);
 }
 
-.at-risk .nodeCore {
-    fill: var(--red);
+/* Hover State */
+.provinceGroup:hover .provincePath {
+    fill-opacity: 0.3;
+    stroke-width: 0.08px;
+    transform: translateY(-0.5px);
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
 }
 
-.nodeGroup.selected .nodeCore {
-    stroke: #fff;
-    stroke-width: 0.8;
+.provinceGroup.on-track:hover .provincePath {
+    fill: rgba(29, 185, 84, 0.2);
+    stroke: #1DB954;
 }
 
-.pulse {
-    fill: none;
-    stroke-width: 0.5;
-    animation: pulseAnim 2s infinite;
-    opacity: 0;
-}
-
-.on-track .pulse {
-    stroke: var(--green);
-}
-
-.delayed .pulse {
+.provinceGroup.at-risk:hover .provincePath {
+    fill: rgba(245, 166, 35, 0.2);
     stroke: #F5A623;
 }
 
-.at-risk .pulse {
-    stroke: var(--red);
+.provinceGroup.delayed:hover .provincePath {
+    fill: rgba(229, 72, 77, 0.2);
+    stroke: #E5484D;
 }
 
-@keyframes pulseAnim {
-    0% {
-        r: 2;
-        opacity: 0.8;
-    }
-
-    100% {
-        r: 8;
-        opacity: 0;
-    }
+/* Selected State */
+.provinceGroup.selected .provincePath {
+    fill-opacity: 0.4;
+    stroke-width: 0.1px;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
 }
 
-.nodeLabel {
-    font-size: 2.5px;
-    font-weight: 700;
-    fill: var(--text-primary);
-    paint-order: stroke;
-    stroke: var(--bg-card);
-    stroke-width: 0.8px;
-    pointer-events: none;
-    user-select: none;
+.provinceGroup.selected.on-track .provincePath {
+    fill: rgba(29, 185, 84, 0.3);
+    stroke: #1DB954;
 }
 
-/* Floating Tooltip */
+.provinceGroup.selected.at-risk .provincePath {
+    fill: rgba(245, 166, 35, 0.3);
+    stroke: #F5A623;
+}
+
+.provinceGroup.selected.delayed .provincePath {
+    fill: rgba(229, 72, 77, 0.3);
+    stroke: #E5484D;
+}
+
+/* Tooltip */
 .tooltip {
     position: absolute;
-    bottom: 40px;
-    right: 40px;
-    background: var(--bg-card);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(10, 14, 26, 0.95);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     padding: 16px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     pointer-events: none;
+    z-index: 10;
     min-width: 200px;
-    animation: slideUpFade 0.2s ease-out forwards;
-}
-
-@keyframes slideUpFade {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    text-align: center;
 }
 
 .tooltip h4 {
-    font-size: 1rem;
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
     color: var(--text-primary);
-    margin-bottom: 8px;
 }
 
 .ttStats {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.8rem;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    margin-bottom: 12px;
 }
 
 .ttBadge {
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 2px 6px;
+    display: inline-block;
+    padding: 4px 8px;
     border-radius: 4px;
-    text-transform: capitalize;
-}
-
-.ttBadge.on-track {
-    background: var(--green-glow);
-    color: var(--green);
-}
-
-.ttBadge.delayed {
-    background: rgba(245, 166, 35, 0.15);
-    color: #F5A623;
-}
-
-.ttBadge.at-risk {
-    background: var(--red-glow);
-    color: var(--red);
-}
-
-.ttHint {
     font-size: 0.75rem;
-    color: var(--green);
-    font-weight: 500;
-    padding-top: 8px;
-    border-top: 1px solid var(--border);
+    font-weight: 600;
+    text-transform: uppercase;
+    align-self: center;
 }
 
-/* Action Panel for Selected Region */
-.actionPanel {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    background: var(--bg-card);
-    border: 1px solid var(--green);
-    padding: 20px;
-    border-radius: var(--radius-md);
-    box-shadow: 0 8px 32px rgba(29, 185, 84, 0.15);
-    animation: slideUpFade 0.3s ease-out forwards;
-}
-
-.actionPanel h3 {
-    font-size: 1.1rem;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-}
-
-.actionGrid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.actionBtn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    color: var(--text-primary);
-    padding: 10px 16px;
-    border-radius: var(--radius-sm);
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.actionBtn:hover {
-    background: var(--green-glow);
-    border-color: var(--green);
-    color: var(--green);
-}
+.ttBadge.on-track { background: rgba(29, 185, 84, 0.15); color: #1DB954; }
+.ttBadge.at-risk { background: rgba(245, 166, 35, 0.15); color: #F5A623; }
+.ttBadge.delayed { background: rgba(229, 72, 77, 0.15); color: #E5484D; }

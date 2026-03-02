@@ -12,22 +12,19 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [theme, setTheme] = useState<Theme>("light");
+    const [theme, setTheme] = useState<Theme>("dark");
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
         const saved = localStorage.getItem("zndmp-theme") as Theme | null;
-        const mediaQuery = window.matchMedia("(prefers-color-scheme: light)");
 
         if (saved) {
             setTheme(saved);
             document.documentElement.setAttribute("data-theme", saved);
-        } else if (mediaQuery.matches) {
+        } else {
             setTheme("dark");
             document.documentElement.setAttribute("data-theme", "dark");
-        } else {
-            document.documentElement.setAttribute("data-theme", "light");
         }
     }, []);
 
