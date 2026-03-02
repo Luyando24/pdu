@@ -21,6 +21,7 @@ export const metadata: Metadata = {
       "Centralized digital delivery platform enabling the PDU to monitor government projects across all constituencies in real time.",
     type: "website",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({

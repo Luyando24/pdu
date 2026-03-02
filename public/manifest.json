@@ -1,0 +1,16 @@
+{
+  "name": "CDF Monitor",
+  "short_name": "CDF Monitor",
+  "description": "CDF Monitoring Tool for Field Officers",
+  "start_url": "/report",
+  "display": "standalone",
+  "background_color": "#0A0E1A",
+  "theme_color": "#1DB954",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
