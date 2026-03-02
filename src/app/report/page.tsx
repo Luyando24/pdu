@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import styles from './Report.module.css';
 import { addReport, getAllReports, markReportSynced, Report } from '@/lib/db';
-import { Camera, CheckCircle, RefreshCw, Upload, Wifi, WifiOff, ArrowLeft, Home, Plus, History, User, Settings, LogOut, MapPin, ChevronDown, Bell } from 'lucide-react';
+import { Camera, CheckCircle, RefreshCw, Upload, Wifi, WifiOff, ArrowLeft, Home, Plus, History, User, Settings, LogOut, MapPin, ChevronDown, Bell, Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
+import { useTheme } from '../../components/ThemeContext';
 
 // Mock Data
 const PROJECTS = [
@@ -23,6 +24,7 @@ const LOCATIONS = {
 type Tab = 'home' | 'report' | 'history' | 'profile';
 
 export default function ReportPage() {
+  const { theme, toggleTheme } = useTheme();
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [isOnline, setIsOnline] = useState(true);
   const [reports, setReports] = useState<Report[]>([]);
@@ -372,6 +374,15 @@ export default function ReportPage() {
                <div className={styles.menuItem}>
                  <div className={styles.menuIcon}><Settings size={20} /></div>
                  <span>Settings</span>
+               </div>
+               <div className={styles.menuItem} onClick={toggleTheme}>
+                 <div className={styles.menuIcon}>
+                   {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                 </div>
+                 <div className={styles.menuText}>
+                   <span>Appearance</span>
+                   <small>{theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</small>
+                 </div>
                </div>
                <div className={styles.menuItem} onClick={syncReports}>
                  <div className={styles.menuIcon}><RefreshCw size={20} /></div>
