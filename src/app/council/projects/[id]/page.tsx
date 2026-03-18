@@ -16,7 +16,7 @@ import {
     Check
 } from "lucide-react";
 import Link from "next/link";
-import { PROJECTS } from "../page";
+import { PROJECTS } from "@/lib/projects-data";
 import { use } from "react";
 
 export default function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
