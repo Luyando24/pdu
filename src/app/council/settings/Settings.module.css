@@ -1,0 +1,246 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.header {
+    margin-bottom: 32px;
+}
+
+.title {
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 24px;
+}
+
+.panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: fit-content;
+}
+
+.panelHeader {
+    padding: 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panelHeader h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.addBtn {
+    padding: 8px 16px;
+    background: var(--blue-accent);
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.roleList {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.roleCard {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.roleHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.roleIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roleTitle h3 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.roleTitle span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.iconBtn {
+    margin-left: auto;
+    color: var(--text-muted);
+}
+
+.roleFooter {
+    font-size: 0.85rem;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.permLabel {
+    color: var(--text-muted);
+    margin-right: 8px;
+}
+
+.permVal {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.permGrid {
+    display: grid;
+    gap: 8px;
+}
+
+.permItem {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Side Column */
+.sideCol {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.configBody {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.configOption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.configInfo {
+    display: flex;
+    gap: 16px;
+    color: var(--text-secondary);
+}
+
+.configInfo h4 {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.configInfo p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+/* Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.1);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--green);
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.dangerPanel {
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.dangerBtn {
+    width: 100%;
+    padding: 12px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--red);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.dangerBtn:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+@media (max-width: 1100px) {
+    .mainGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -36,6 +36,13 @@ export default function UsersDirectory({ onSelectUser, selectedUser }: UsersDire
         u.role.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const handleInvite = () => {
+        const email = prompt("Enter the email address of the user you want to invite:");
+        if (email) {
+            alert(`Invitation sent to ${email}. They will receive an email shortly with instructions to set up their account.`);
+        }
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -43,7 +50,7 @@ export default function UsersDirectory({ onSelectUser, selectedUser }: UsersDire
                     <h1 className={styles.title}>Users & Roles</h1>
                     <p className={styles.subtitle}>Manage platform access and jurisdictional hierarchies.</p>
                 </div>
-                <button className={styles.addBtn}>
+                <button className={styles.addBtn} onClick={handleInvite}>
                     <Shield size={14} /> Invite User
                 </button>
             </div>

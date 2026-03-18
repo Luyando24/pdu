@@ -1,0 +1,255 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.title {
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+}
+
+.exportBtn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.exportBtn:hover {
+    border-color: var(--blue-accent);
+    transform: translateY(-2px);
+}
+
+/* KPI Grid */
+.kpiGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.kpiCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.kpiIcon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kpiInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpiLabel {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.kpiValue {
+    font-size: 1.75rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+}
+
+.kpiTrend {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.kpiTrendNeutral {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.kpiTrendBad {
+    font-size: 0.8rem;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Main Grid */
+.mainGrid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 24px;
+}
+
+.panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.panelHeader {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.panelHeader h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sourceGrid {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sourceItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sourceMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.sourceName {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.sourceVal {
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+}
+
+.sourceTrend {
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.up { color: var(--green); }
+.down { color: var(--red); }
+
+.sourceBar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sourceBar div {
+    height: 100%;
+}
+
+/* Table */
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    padding: 16px 24px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+}
+
+.table td {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.payerCell {
+    display: flex;
+    flex-direction: column;
+}
+
+.payerName {
+    font-weight: 700;
+}
+
+.txId {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.txAmount {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+}
+
+.txMethod, .txDate {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.verified { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+.processing { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+@media (max-width: 1100px) {
+    .mainGrid {
+        grid-template-columns: 1fr;
+    }
+    .kpiGrid {
+        grid-template-columns: 1fr;
+    }
+}

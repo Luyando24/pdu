@@ -61,22 +61,39 @@
     gap: 12px;
 }
 
-.filterBtn {
+.filterGroup {
     display: flex;
     align-items: center;
     gap: 8px;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    padding: 8px 16px;
+    padding: 4px 12px;
     border-radius: var(--radius-sm);
     color: var(--text-primary);
-    font-weight: 600;
-    cursor: pointer;
     transition: var(--transition);
 }
 
-.filterBtn:hover {
-    background: var(--bg-hover);
+.filterGroup:focus-within {
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px var(--green-glow);
+}
+
+.filterSelect {
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    outline: none;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.noResults {
+    padding: 40px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
 }
 
 .tableContainer {

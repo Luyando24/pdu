@@ -1,0 +1,245 @@
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.title {
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 8px 16px;
+    width: 300px;
+}
+
+.searchBox input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.newProjectBtn {
+    background: var(--green);
+    color: black;
+    font-weight: 800;
+    padding: 10px 24px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.newProjectBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--green-glow);
+}
+
+.tableCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.tableFilters {
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.filterGroup {
+    display: flex;
+    gap: 12px;
+}
+
+.filterBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.filterBtn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.resultsCount {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.tableContainer {
+    overflow-x: auto;
+}
+
+.projectTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.projectTable th {
+    padding: 18px 24px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.01);
+    white-space: nowrap;
+}
+
+.projectTable td {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.projectTable tr:last-child td {
+    border-bottom: none;
+}
+
+.projectTable tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.projectNameCell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.projectMainName {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.projectSubName {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.fontBold {
+    font-weight: 700;
+}
+
+.progressCell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 180px;
+}
+
+.progressBarMini {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progressBarMini div {
+    height: 100%;
+}
+
+.progressValue {
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.ongoing { background: rgba(245, 166, 35, 0.1); color: var(--gold); }
+.completed { background: rgba(29, 185, 84, 0.1); color: var(--green); }
+.delayed { background: rgba(229, 72, 77, 0.1); color: var(--red); }
+
+.textCenter {
+    text-align: center;
+}
+
+.viewBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--green-glow);
+    border: 1px solid var(--border-glow);
+    border-radius: 8px;
+    color: var(--green);
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.viewBtn:hover {
+    background: var(--green);
+    color: black;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .headerActions {
+        width: 100%;
+    }
+    .searchBox {
+        flex: 1;
+    }
+}

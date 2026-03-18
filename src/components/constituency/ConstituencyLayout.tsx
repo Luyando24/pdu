@@ -4,11 +4,12 @@ import { useState } from "react";
 import Sidebar, { NavItem } from "../dashboard/Sidebar";
 import Header from "../dashboard/Header";
 import styles from "./ConstituencyLayout.module.css";
-import { Home, FolderKanban, FileEdit, Settings, Users } from "lucide-react";
+import { Home, FolderKanban, FileEdit, Settings, Users, Landmark } from "lucide-react";
 
 const constituencyNavItems: NavItem[] = [
     { name: "Overview", href: "/constituency", icon: Home },
     { name: "My Projects", href: "/constituency/projects", icon: FolderKanban },
+    { name: "Municipal Council", href: "/constituency/council", icon: Landmark },
     { name: "Users & Roles", href: "/constituency/users", icon: Users },
     { name: "Submit Report", href: "/constituency/report", icon: FileEdit },
     { name: "Settings", href: "/constituency/settings", icon: Settings },

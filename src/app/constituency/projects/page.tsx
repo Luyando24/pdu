@@ -4,6 +4,7 @@ import ConstituencyLayout from "@/components/constituency/ConstituencyLayout";
 import styles from "./MyProjects.module.css";
 import { Search, Filter, MoreVertical, FileText } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const mockLocalProjects = [
     { id: 'CDF-24-001', name: 'Matero Level 1 Hospital Expansion', sector: 'Health', budget: 'ZMW 5.2M', phase: 'Construction', status: 'On Track', lastUpdate: '2h ago' },
@@ -14,6 +15,21 @@ const mockLocalProjects = [
 ];
 
 export default function MyProjectsPage() {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedSector, setSelectedSector] = useState("All");
+    const [selectedStatus, setSelectedStatus] = useState("All");
+
+    const sectors = ["All", ...new Set(mockLocalProjects.map(p => p.sector))];
+    const statuses = ["All", "On Track", "Pending Funds", "Blocked", "At Risk"];
+
+    const filteredProjects = mockLocalProjects.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                             p.id.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesSector = selectedSector === "All" || p.sector === selectedSector;
+        const matchesStatus = selectedStatus === "All" || p.status === selectedStatus;
+        return matchesSearch && matchesSector && matchesStatus;
+    });
+
     return (
         <ConstituencyLayout>
             <div className={styles.container}>
@@ -25,12 +41,36 @@ export default function MyProjectsPage() {
                 <div className={styles.toolbar}>
                     <div className={styles.searchBox}>
                         <Search size={18} className={styles.searchIcon} />
-                        <input type="text" placeholder="Search by Project ID or Name..." className={styles.searchInput} />
+                        <input 
+                            type="text" 
+                            placeholder="Search by Project ID or Name..." 
+                            className={styles.searchInput} 
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                     </div>
 
                     <div className={styles.filters}>
-                        <button className={styles.filterBtn}><Filter size={16} /> Filter by Sector</button>
-                        <button className={styles.filterBtn}>Status: All</button>
+                        <div className={styles.filterGroup}>
+                            <Filter size={16} />
+                            <select 
+                                className={styles.filterSelect}
+                                value={selectedSector}
+                                onChange={(e) => setSelectedSector(e.target.value)}
+                            >
+                                {sectors.map(s => <option key={s} value={s}>{s === 'All' ? 'All Sectors' : s}</option>)}
+                            </select>
+                        </div>
+                        
+                        <div className={styles.filterGroup}>
+                            <select 
+                                className={styles.filterSelect}
+                                value={selectedStatus}
+                                onChange={(e) => setSelectedStatus(e.target.value)}
+                            >
+                                {statuses.map(s => <option key={s} value={s}>{s === 'All' ? 'All Statuses' : s}</option>)}
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -49,7 +89,7 @@ export default function MyProjectsPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {mockLocalProjects.map(p => (
+                            {filteredProjects.map(p => (
                                 <tr key={p.id}>
                                     <td className={styles.cellId}>{p.id}</td>
                                     <td className={styles.cellName}>{p.name}</td>
@@ -72,6 +112,11 @@ export default function MyProjectsPage() {
                             ))}
                         </tbody>
                     </table>
+                    {filteredProjects.length === 0 && (
+                        <div className={styles.noResults}>
+                            No projects found matching your criteria.
+                        </div>
+                    )}
                 </div>
             </div>
         </ConstituencyLayout>

@@ -1,0 +1,279 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.header {
+    margin-bottom: 40px;
+}
+
+.backBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+    transition: var(--transition);
+}
+
+.backBtn:hover {
+    color: var(--green);
+}
+
+.titleGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.statusBadge {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.ongoing { background: rgba(245, 166, 35, 0.1); color: var(--gold); }
+.completed { background: rgba(29, 185, 84, 0.1); color: var(--green); }
+.delayed { background: rgba(229, 72, 77, 0.1); color: var(--red); }
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 32px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.cardHeader h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.progressPct {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--green);
+}
+
+.progressBar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.progressBar div {
+    height: 100%;
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
+}
+
+.milestones {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.milestoneItem {
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+.milestoneItem:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 24px;
+    bottom: -24px;
+    width: 2px;
+    background: var(--border);
+}
+
+.msStatus {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.done .msStatus {
+    background: var(--green);
+    border-color: var(--green);
+    color: black;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+}
+
+.msInfo h4 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.msInfo span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.statsGrid .card {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statInfo label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.statVal {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.description {
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.tags {
+    display: flex;
+    gap: 12px;
+}
+
+.tag {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Sidebar */
+.infoList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.infoItem {
+    display: flex;
+    gap: 16px;
+}
+
+.infoIcon {
+    color: var(--green);
+    margin-top: 4px;
+}
+
+.infoItem label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.infoItem span {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.reliabilityGroup {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.scoreCircle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green-glow);
+}
+
+.score {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--green);
+}
+
+.reliabilityGroup h4 {
+    margin-bottom: 2px;
+}
+
+.reliabilityGroup p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

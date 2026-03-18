@@ -17,8 +17,26 @@ export default function RoleManagementPanel({ userId, onClose }: RoleManagementP
         approveBudgets: false
     });
 
+    const [isSaving, setIsSaving] = useState(false);
+
     const togglePerm = (key: keyof typeof permissions) => {
         setPermissions(prev => ({ ...prev, [key]: !prev[key] }));
+    };
+
+    const handleSave = () => {
+        setIsSaving(true);
+        setTimeout(() => {
+            setIsSaving(false);
+            alert("Permissions updated successfully for this user.");
+            onClose();
+        }, 800);
+    };
+
+    const handleSuspend = () => {
+        if (confirm("Are you sure you want to suspend this account? The user will lose all access immediately.")) {
+            alert("Account has been suspended.");
+            onClose();
+        }
     };
 
     if (!userId) return null;
@@ -41,7 +59,7 @@ export default function RoleManagementPanel({ userId, onClose }: RoleManagementP
 
                     <div className={styles.section}>
                         <div className={styles.profileCard}>
-                            <div className={styles.avatar}>MC</div>
+                            <div className={styles.avatar}>{userId === 'U-1001' ? 'MC' : 'MC'}</div>
                             <div className={styles.profileInfo}>
                                 <h3 className={styles.pName}>Mwansa Chomba</h3>
                                 <span className={styles.pRole}>Executive Director</span>
@@ -145,7 +163,7 @@ export default function RoleManagementPanel({ userId, onClose }: RoleManagementP
                         <button className={styles.resetBtn}>
                             <Key size={14} /> Send Password Reset Link
                         </button>
-                        <button className={styles.suspendBtn}>
+                        <button className={styles.suspendBtn} onClick={handleSuspend}>
                             Suspend Account
                         </button>
                     </div>
@@ -153,9 +171,9 @@ export default function RoleManagementPanel({ userId, onClose }: RoleManagementP
                 </div>
 
                 <div className={styles.footer}>
-                    <button className={styles.saveBtn}>
+                    <button className={styles.saveBtn} onClick={handleSave} disabled={isSaving}>
                         <CheckCircle2 size={16} />
-                        Save Changes
+                        {isSaving ? "Saving..." : "Save Changes"}
                     </button>
                 </div>
             </div>

@@ -3,8 +3,30 @@
 import ConstituencyLayout from "@/components/constituency/ConstituencyLayout";
 import styles from "./ConstituencyOverview.module.css";
 import { Wallet, CheckCircle, AlertOctagon, TrendingUp, Clock, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getAllReports, Report } from "@/lib/db";
 
 export default function ConstituencyOverviewPage() {
+    const [reports, setReports] = useState<Report[]>([]);
+
+    useEffect(() => {
+        const fetchReports = async () => {
+            const data = await getAllReports();
+            setReports(data.sort((a, b) => b.timestamp - a.timestamp));
+        };
+        fetchReports();
+    }, []);
+
+    const formatTimestamp = (ts: number) => {
+        const diff = Date.now() - ts;
+        const mins = Math.floor(diff / 60000);
+        if (mins < 1) return 'Just now';
+        if (mins < 60) return `${mins}m ago`;
+        const hours = Math.floor(mins / 60);
+        if (hours < 24) return `${hours}h ago`;
+        return `${Math.floor(hours / 24)}d ago`;
+    };
+
     return (
         <ConstituencyLayout>
             <div className={styles.container}>
@@ -37,9 +59,9 @@ export default function ConstituencyOverviewPage() {
                             <CheckCircle size={24} />
                         </div>
                         <div className={styles.kpiData}>
-                            <span className={styles.kpiLabel}>Completed Projects</span>
-                            <span className={styles.kpiValue}>8</span>
-                            <span className={styles.kpiTrendNeutral}>Since Jan 1, 2024</span>
+                            <span className={styles.kpiLabel}>Reports Submitted</span>
+                            <span className={styles.kpiValue}>{reports.length + 8}</span>
+                            <span className={styles.kpiTrendNeutral}>Total since Jan 1, 2024</span>
                         </div>
                     </div>
 
@@ -61,6 +83,25 @@ export default function ConstituencyOverviewPage() {
                         <h3 className={styles.panelTitle}>Recent Constituency Activity</h3>
 
                         <div className={styles.feedList}>
+                            {reports.map((report) => (
+                                <div key={report.id} className={styles.feedItem}>
+                                    <div className={styles.feedTime}><Clock size={14} /> {formatTimestamp(report.timestamp)}</div>
+                                    <div className={styles.feedContent}>
+                                        <strong>{report.projectName || report.projectId}</strong>
+                                        <p>{report.comments}</p>
+                                        <span className={styles.badge} style={{ 
+                                            background: report.status === 'on-track' ? 'var(--green-glow)' : 
+                                                        report.status === 'delayed' ? '#fff7ed' : '#fee2e2', 
+                                            color: report.status === 'on-track' ? 'var(--green)' : 
+                                                   report.status === 'delayed' ? '#f97316' : 'var(--red)' 
+                                        }}>
+                                            {report.status === 'on-track' ? 'Stable' : report.status === 'delayed' ? 'Delayed' : 'Critical'}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {/* Static mock data remains as fallback/additional history */}
                             <div className={styles.feedItem}>
                                 <div className={styles.feedTime}><Clock size={14} /> 2h ago</div>
                                 <div className={styles.feedContent}>

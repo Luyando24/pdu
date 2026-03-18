@@ -1,13 +1,60 @@
 "use client";
 
-import { UploadCloud, CheckCircle2, AlertTriangle } from "lucide-react";
+import { UploadCloud, CheckCircle2, AlertTriangle, CheckCircle } from "lucide-react";
 import styles from "./SubmissionForm.module.css";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
+import { addReport } from "@/lib/db";
 
 export default function SubmissionForm({ projectId }: { projectId: string }) {
     const [progress, setProgress] = useState(38); // Default to match mock
+    const [status, setStatus] = useState("delayed");
+    const [remarks, setRemarks] = useState("Material shortage (cement) halting foundation work. Contractor has paused operations awaiting supply from regional depot. Need intervention with supplier.");
+    const [financials, setFinancials] = useState(10500000);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     if (!projectId) return null;
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            await addReport({
+                projectId,
+                projectName: projectId === 'Select a Project' ? 'Unknown Project' : `Project ${projectId}`, // Mocking project name for now
+                status,
+                comments: remarks,
+                photos: [], // TODO: Handle actual photo uploads if needed
+            });
+            setSubmitted(true);
+        } catch (error) {
+            console.error("Failed to submit report:", error);
+            alert("Failed to submit report. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    if (submitted) {
+        return (
+            <div className={styles.successContainer}>
+                <div className={styles.successIcon}>
+                    <CheckCircle size={64} color="var(--green)" />
+                </div>
+                <h2 className={styles.successTitle}>Report Submitted Successfully!</h2>
+                <p className={styles.successMessage}>
+                    Your update for <strong>{projectId}</strong> has been recorded and queued for sync with the PDU National Dashboard.
+                </p>
+                <button 
+                    className={styles.btnPrimary} 
+                    onClick={() => setSubmitted(false)}
+                >
+                    Submit Another Update
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.formContainer}>
@@ -16,7 +63,7 @@ export default function SubmissionForm({ projectId }: { projectId: string }) {
                 <span className={styles.forProject}>For: {projectId}</span>
             </div>
 
-            <form className={styles.form} onSubmit={e => e.preventDefault()}>
+            <form className={styles.form} onSubmit={handleSubmit}>
 
                 {/* Row 1: Reporting Date & Status Dropdown */}
                 <div className={styles.row}>
@@ -26,7 +73,11 @@ export default function SubmissionForm({ projectId }: { projectId: string }) {
                     </div>
                     <div className={styles.fieldGroup}>
                         <label className={styles.label}>Overall Status Indicator</label>
-                        <select className={styles.select} defaultValue="delayed">
+                        <select 
+                            className={styles.select} 
+                            value={status}
+                            onChange={e => setStatus(e.target.value)}
+                        >
                             <option value="on-track">✓ On Track</option>
                             <option value="delayed">⚠️ Delayed</option>
                             <option value="critical">⛔ Critical / Blocked</option>
@@ -56,7 +107,13 @@ export default function SubmissionForm({ projectId }: { projectId: string }) {
                     <label className={styles.label}>Financial Utilization (ZMW)</label>
                     <div className={styles.currencyInput}>
                         <span>K</span>
-                        <input type="number" className={styles.input} placeholder="e.g. 10500000" defaultValue={10500000} />
+                        <input 
+                            type="number" 
+                            className={styles.input} 
+                            placeholder="e.g. 10500000" 
+                            value={financials}
+                            onChange={e => setFinancials(Number(e.target.value))}
+                        />
                     </div>
                 </div>
 
@@ -67,7 +124,8 @@ export default function SubmissionForm({ projectId }: { projectId: string }) {
                         className={styles.textarea}
                         rows={4}
                         placeholder="Provide context on recent milestones, challenges encountered, or reasons for delay..."
-                        defaultValue="Material shortage (cement) halting foundation work. Contractor has paused operations awaiting supply from regional depot. Need intervention with supplier."
+                        value={remarks}
+                        onChange={e => setRemarks(e.target.value)}
                     />
                 </div>
 
@@ -102,7 +160,13 @@ export default function SubmissionForm({ projectId }: { projectId: string }) {
                 {/* Actions */}
                 <div className={styles.actions}>
                     <button type="button" className={styles.btnGhost}>Save as Draft</button>
-                    <button type="submit" className={styles.btnPrimary}>Submit to PDU</button>
+                    <button 
+                        type="submit" 
+                        className={styles.btnPrimary}
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting ? "Submitting..." : "Submit to PDU"}
+                    </button>
                 </div>
             </form>
         </div>
